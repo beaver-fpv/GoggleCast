@@ -2,11 +2,13 @@
 
 <img src="assets/gogglecast-preview.png" width="96" height="96" alt="GoggleCast 图标">
 
-**把 Windows 电脑桌面和本地视频，无线投到 DJI Goggles 3。**
+**把 Windows 电脑桌面和本地视频，无线投到支持 DLNA 的 DJI 眼镜。**
 
 [English](README.en.md) · [下载最新版](https://github.com/beaver-fpv/GoggleCast/releases/latest) · [详细使用说明](docs/USAGE.zh-CN.md) · [常见问题](docs/TROUBLESHOOTING.zh-CN.md)
 
 GoggleCast 是一个 Windows 桌面投屏程序，提供安装版和便携版。电脑和眼镜连接同一局域网后，通过 DLNA / UPnP 发送桌面画面或视频文件，无需手机、平板或虚拟显示驱动。适合看视频、演示和展示电脑桌面。
+
+**兼容情况：Goggles 3 已实机验证；Goggles 2 官方支持 DLNA，可尝试使用，本项目尚未实机验证；Goggles N3 当前不列入兼容名单。** 详见下方兼容表及[型号依据与验证方法](docs/COMPATIBILITY.md)。
 
 ![观幕 GoggleCast 简体中文界面](docs/images/gogglecast.zh-CN.png)
 
@@ -15,7 +17,7 @@ GoggleCast 是一个 Windows 桌面投屏程序，提供安装版和便携版。
                   ↓
           GoggleCast → 局域网
                   ↓
-       Goggles 3「无线投屏」
+       DJI 眼镜「无线投屏」
                   ↓
            眼镜画面 + 眼镜耳机
 ```
@@ -34,13 +36,24 @@ GoggleCast 是一个 Windows 桌面投屏程序，提供安装版和便携版。
 | 连接排查 | 动态测试图、提示音、连接日志和收发状态。 |
 | 多语言 | 简体中文、繁体中文、English、日本語、한국어、Español、Français、Deutsch；可跟随系统。 |
 
+## 眼镜兼容性
+
+| 型号 | 当前状态 | 说明 |
+| --- | --- | --- |
+| **DJI Goggles 3** | **已实机验证** | 测试图、1080p / 30 帧桌面、兼容转码视频及眼镜耳机声画同步已确认。 |
+| **DJI Goggles 2** | **协议兼容，待实机验证** | [DJI 官方](https://www.dji.com/support/product/goggles-2)明确支持 DLNA 无线投屏；本软件使用相同协议，可尝试连接，但尚未用本项目验证桌面、视频及声音。 |
+| **DJI Goggles N3** | **当前不列入兼容名单** | 未找到官方支持 DLNA 投屏接收的依据；存储卡播放和 USB 分享飞行画面不能证明它可接收电脑投屏。 |
+| 其他 DLNA 接收端 | 实验性，未验证 | 需要在局域网公开 UPnP MediaRenderer / AVTransport 服务，并支持本软件发送的音视频格式；仅支持 DLNA 文件共享不够。 |
+
+核查日期：**2026-10-18**。上述“协议兼容”是根据公开资料和程序使用的协议作出的判断，不代表已完成该型号的实机测试，也不是 DJI 对本软件的认证。Goggles 2 与 DJI FPV Goggles V2 是不同型号。官方来源、连接方法和实测反馈要求见[兼容说明](docs/COMPATIBILITY.md)。
+
 ## 运行要求
 
 - Windows 10 / 11 **x64**，安装 .NET Framework 4.8。
-- DJI Goggles 3，能够打开「更多 → 无线投屏」。目前的实机验证对象是 Goggles 3；其他 DLNA 接收端未做兼容性保证。
+- 能开启 DLNA 无线投屏接收的眼镜。Goggles 3 已实测；Goggles 2 可按上表尝试，其结果仍需实机确认。
 - 电脑和眼镜处于同一 **IPv4 局域网**。眼镜连接电脑的 Windows 移动热点也可以；使用路由器时，电脑可以接网线。
 - 桌面投屏、测试画面和视频转码需要 **FFmpeg**。推荐离线安装包已包含编码器，便携版需自行准备。
-- 如需听声音，使用连接到眼镜 USB-C 接口的数字 DAC 耳机或兼容转接头；Goggles 3 没有内置扬声器。
+- 如需听声音，Goggles 3 使用连接眼镜 USB-C 接口的数字 DAC 耳机或兼容转接头；Goggles 2 使用眼镜的 3.5 mm 耳机接口。音频硬件说明依据 DJI 文档，Goggles 2 的本软件声音播放仍待实测。
 
 ## 下载安装
 
@@ -61,7 +74,7 @@ GoggleCast 是一个 Windows 桌面投屏程序，提供安装版和便携版。
 
 ## 开始投屏
 
-1. 连接电脑和眼镜的局域网。在眼镜中打开「更多 → 无线投屏」，保持该页面和眼镜唤醒。
+1. 连接电脑和眼镜的局域网。在眼镜中打开无线投屏等待页面，并保持眼镜唤醒。Goggles 3 的路径是「更多 → 无线投屏」；Goggles 2 请按其手册开启无线投屏。
 2. 启动 GoggleCast，选择「电脑桌面」和显示器，或选择「本地视频」及文件。首次使用可保留默认的 1080p、自动编码和 MPEG-TS。
 3. 点击「搜索设备」，选中眼镜，再点击「开始投屏」。等待眼镜完成缓冲，在眼镜内确认画面和声音。
 4. 结束时点击「停止」。
@@ -106,6 +119,7 @@ GoggleCast 是一个 Windows 桌面投屏程序，提供安装版和便携版。
 
 ## 详细文档
 
+- [眼镜兼容说明：Goggles 3、Goggles 2、N3 与实测反馈](docs/COMPATIBILITY.md)
 - [使用说明：联网、桌面、视频、声音和各项设置](docs/USAGE.zh-CN.md)
 - [常见问题：发现设备、无画面、无声音、卡顿和日志](docs/TROUBLESHOOTING.zh-CN.md)
 - [英文主页 / English README](README.en.md)

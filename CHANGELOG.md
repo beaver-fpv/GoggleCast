@@ -1,5 +1,12 @@
 # 更新记录 / Changelog
 
+## 文档更新 — 2026-10-18 / Documentation update
+
+- 新增眼镜兼容表及官方来源：Goggles 3 已实测；Goggles 2 官方支持 DLNA，协议兼容但本项目尚未实测；N3 当前不列入兼容名单。
+- 补充 Goggles 2 的连接指引、3.5 mm 耳机说明和社区实测反馈要求。
+- 仅更新说明，未改动程序或替换 v0.1.0 安装包；不将资料核查标为新增实机验证。
+- Added sourced compatibility guidance: Goggles 3 hardware-tested, Goggles 2 protocol-compatible but untested with this app, and N3 currently outside the compatibility list. Documentation only; the v0.1.0 app and release binaries are unchanged.
+
 ## 0.1.0 — 2026-10-18
 
 首次公开发布，面向 Windows 10 / 11 x64 和 DJI Goggles 3。

@@ -8,7 +8,7 @@ Native Windows desktop. This is not a website or a mobile app.
 
 ## Users
 
-DJI Goggles 3 owners who want to view Windows desktop content and videos in the goggles without a phone acting as an intermediary.
+Owners of DLNA-capable DJI goggles who want to view Windows desktop content and videos in the goggles without a phone acting as an intermediary. Goggles 3 is hardware-tested; Goggles 2 is protocol-compatible according to DJI documentation but untested with this project. Goggles N3 is not currently included in the compatibility list.
 
 ## Product Purpose
 
@@ -20,7 +20,7 @@ Implementation choice: C# with Windows desktop UI and the installed .NET Framewo
 
 ## Capabilities and Constraints
 
-- Windows to Goggles 3 is the direction. It is separate from the user's existing USB goggles-to-PC viewer.
+- Windows to goggles is the direction. It is separate from the user's existing USB goggles-to-PC viewer.
 - Goggles must enable Wireless Streaming and share a LAN with the computer.
 - Screen streaming and local video playback are the first version's focus.
 - Desktop sharing includes the default Windows playback device through WASAPI loopback. Audio and video share a timeline and are sent together; the user listens through the goggles' headphones. This does not compensate sound heard directly from the computer.
@@ -41,3 +41,5 @@ Implementation choice: C# with Windows desktop UI and the installed .NET Framewo
 DLNA desktop/video reception can involve several-second receiver buffering. USB goggles-to-PC live-view latency measurements concern the opposite direction and do not measure this software.
 
 On 2026-10-18 the user's Goggles 3 displayed the moving test picture, 1080p desktop and transcoded video over the PC's mobile hotspot. The user separately confirmed perceptually synchronized video/audio and desktop/system audio through goggles headphones. Precise latency and long-duration drift were not measured.
+
+On 2026-10-18 DJI's Goggles 2 support page explicitly documented DLNA wireless streaming. The app discovers generic UPnP MediaRenderer / AVTransport services without a Goggles 3 model restriction. This supports offering an untested Goggles 2 connection path, not claiming hardware validation. No official DLNA reception documentation was found for Goggles N3. Sources and validation criteria are recorded in [docs/COMPATIBILITY.md](docs/COMPATIBILITY.md).

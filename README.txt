@@ -1,8 +1,14 @@
-观幕 GoggleCast 0.1.0 — Windows → Goggles 3
+观幕 GoggleCast 0.1.0 — Windows → 支持 DLNA 的眼镜
 
 这是本地运行的 Windows 投屏工具。它通过同一局域网内的 DLNA / UPnP
 发送电脑桌面或视频文件，不需要手机作为中转，也不需要安装虚拟显示驱动。
 项目与下载：https://github.com/beaver-fpv/GoggleCast
+
+眼镜兼容性（2026-10-18 核查）
+Goggles 3：已实机验证画面及眼镜耳机主观声画同步。
+Goggles 2：DJI 官方支持 DLNA，协议上可尝试；本项目尚未实机验证。
+Goggles N3：未找到官方 DLNA 投屏接收依据，当前不列入兼容名单。
+型号依据和反馈方法：https://github.com/beaver-fpv/GoggleCast/blob/main/docs/COMPATIBILITY.md
 
 安装与卸载
 推荐运行 GoggleCast-0.1.0-Setup.exe，选择安装位置，点击「立即安装」。
@@ -18,6 +24,7 @@
 1. 让电脑和眼镜连接同一局域网；眼镜连接电脑的移动热点也可以。
    使用家中路由器时，电脑可以连接网线。
 2. 在 Goggles 3 中进入「更多 → 无线投屏」，保持该页面打开。
+   Goggles 2 按该型号手册开启无线投屏；当前版本可尝试，实际结果待验证。
 3. 打开 GoggleCast，选择「电脑桌面」或「视频文件」。
 4. 点击「搜索设备」，选择眼镜，然后点击「开始投屏」。
 5. 在眼镜内检查实际画面和声音。完成后点击「停止」。
@@ -34,6 +41,7 @@ Français、Deutsch，或跟随系统。语言和编码器路径保存在程序�
 - 视频文件：默认兼容转码，等比缩放并保留音轨。MP4 / M4V 可手动开启
   「原画直传」，但能否播放取决于眼镜对该文件尺寸、编码等的支持。
 - Goggles 3 没有内置扬声器；听声音需要 USB-C 数字 DAC 耳机或相应转接头。
+- Goggles 2 的投屏音频使用其 3.5 mm 耳机接口，本软件在该型号的音频尚未实测。
 - 转码将视频转换为 H.264 / AAC；保留可读取的第一条音轨。
   转码模式会循环播放文件，点击停止结束；原画直传播放至文件末尾。
 - 测试画面：发送移动测试图和提示音，用于排查网络与解码问题。
@@ -83,9 +91,14 @@ Windows 10 / 11 x64，.NET Framework 4.8。无需安装 SDK。
 仅支持 IPv4 局域网。没有账号登录、云服务或公网推流功能。
 
 ------------------------------------------------------------
-GoggleCast 0.1.0 — Windows to Goggles 3
+GoggleCast 0.1.0 — Windows to DLNA-capable goggles
 
 Project and downloads: https://github.com/beaver-fpv/GoggleCast
+
+Compatibility checked on 2026-10-18: Goggles 3 is hardware-tested. Goggles 2
+officially supports DLNA and can be tried, but is untested with this app.
+Goggles N3 is currently outside the compatibility list: no official DLNA
+casting-reception documentation was found. See docs/COMPATIBILITY.md online.
 
 Recommended: run GoggleCast-0.1.0-Setup.exe, choose a folder and click Install.
 The offline installer contains a pinned FFmpeg 8.1.2 runtime. Installation does
@@ -97,8 +110,9 @@ The portable ZIP does not include FFmpeg: keep its files together in a writable
 folder and select your encoder, or put it in runtime\ffmpeg.exe.
 Connect the PC and goggles to the same LAN; a Windows mobile hotspot also works.
 Search again after reconnecting, as the goggles' IP and service port may change.
-In the goggles open More >
-Wireless Streaming. Choose a screen or local video, search for the receiver,
+On Goggles 3 open More > Wireless Streaming. For Goggles 2, enable wireless
+streaming following its manual; this app's results on that model are unverified.
+Choose a screen or local video, search for the receiver,
 and start casting. Check the actual image in the goggles; click Stop to finish.
 
 Use the language selector for Chinese (Simplified/Traditional), English,
@@ -113,6 +127,7 @@ a shared audio/video clock. It does not capture the microphone. Desktop audio
 can be turned off. NVIDIA encoding falls back to CPU when unavailable.
 Goggles 3 has no built-in speaker; audio requires USB-C digital DAC headphones
 or a compatible adapter connected to the goggles.
+Goggles 2 uses its 3.5 mm headphone port for casting audio; untested with this app.
 FFmpeg is required for desktop/test/transcoded streams. Offline Setup includes
 it automatically. The portable application searches runtime/app, the
 GOGGLECAST_FFMPEG environment variable, PATH, or your saved selected path.

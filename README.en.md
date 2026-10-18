@@ -2,11 +2,13 @@
 
 <img src="assets/gogglecast-preview.png" width="96" height="96" alt="GoggleCast icon">
 
-**Cast a Windows desktop or local video wirelessly to DJI Goggles 3.**
+**Cast a Windows desktop or local video wirelessly to DLNA-capable DJI goggles.**
 
 [简体中文](README.md) · [Download](https://github.com/beaver-fpv/GoggleCast/releases/latest) · [Usage guide (Chinese)](docs/USAGE.zh-CN.md) · [Troubleshooting (Chinese)](docs/TROUBLESHOOTING.zh-CN.md)
 
 GoggleCast is a Windows application, available as an installer or a portable ZIP, that sends desktop video and system audio, or a local video file, to the goggles using DLNA / UPnP on your LAN. It requires no phone, tablet or virtual display driver. It is intended for watching videos and presenting a desktop.
+
+**Compatibility: Goggles 3 is hardware-tested. Goggles 2 officially supports DLNA and can be tried, but has not been tested with this project. Goggles N3 is currently outside the compatibility list.** See the table below and the [compatibility evidence and test guide](docs/COMPATIBILITY.md#english).
 
 ![GoggleCast English interface](docs/images/gogglecast.en.png)
 
@@ -15,7 +17,7 @@ Windows desktop + system audio / local video + audio track
                            ↓
                     GoggleCast → LAN
                            ↓
-                Goggles 3 Wireless Streaming
+                DJI goggles Wireless Streaming
                            ↓
                Goggles display + goggles headphones
 ```
@@ -34,13 +36,24 @@ Windows desktop + system audio / local video + audio track
 | Diagnostics | Moving test pattern and tone, connection log and transport status. |
 | Languages | Simplified Chinese, Traditional Chinese, English, Japanese, Korean, Spanish, French and German, plus system-language selection. |
 
+## Goggles compatibility
+
+| Model | Current status | Details |
+| --- | --- | --- |
+| **DJI Goggles 3** | **Hardware-tested** | Moving test pattern, 1080p30 desktop, transcoded video and subjective A/V synchronization through goggles headphones confirmed. |
+| **DJI Goggles 2** | **Protocol-compatible; hardware test pending** | [DJI officially documents DLNA wireless streaming](https://www.dji.com/support/product/goggles-2). This app uses the same protocol, so it can be tried; desktop, video and audio playback have not been tested with this project on this model. |
+| **DJI Goggles N3** | **Currently outside the compatibility list** | No official documentation confirming DLNA casting reception was found. SD-card playback and USB flight-view sharing do not establish PC-to-goggles casting support. |
+| Other DLNA receivers | Experimental; untested | Must expose UPnP MediaRenderer / AVTransport on the LAN and accept this app's media formats. DLNA file sharing alone is insufficient. |
+
+Evidence checked on **2026-10-18**. Protocol compatibility is an inference from documentation and the app's protocol, not a completed hardware test or DJI certification of this app. Goggles 2 is a different model from DJI FPV Goggles V2. See [model-specific evidence and test reporting](docs/COMPATIBILITY.md#english).
+
 ## Requirements
 
 - **Windows 10 / 11 x64** and .NET Framework 4.8.
-- **DJI Goggles 3** with More → Wireless Streaming available. Other DLNA receivers have not been compatibility-tested.
+- Goggles that can enable DLNA wireless-streaming reception. Goggles 3 is hardware-tested; Goggles 2 can be tried with the limits above.
 - The PC and goggles on the same **IPv4 LAN**. The goggles may connect to a Windows mobile hotspot hosted by the PC. An Ethernet-connected PC on the same router also works as a network arrangement.
 - **FFmpeg** for desktop sharing, test patterns and video transcoding. The recommended offline installer includes it; portable users supply it separately.
-- USB-C digital DAC headphones, or a compatible adapter, connected to the goggles for audio. Goggles 3 has no built-in speaker.
+- For audio, Goggles 3 uses USB-C digital DAC headphones or a compatible adapter connected to the goggles. Goggles 2 uses its 3.5 mm headphone port. These hardware details come from DJI documentation; this app's audio playback on Goggles 2 is still untested.
 
 ## Download and install
 
@@ -61,7 +74,7 @@ Releases are not Windows code-signed, so Windows may show an unknown-publisher o
 
 ## Start casting
 
-1. Connect the PC and goggles to the same network. In the goggles, open **More → Wireless Streaming** and keep the goggles awake on that page.
+1. Connect the PC and goggles to the same network. Open the wireless-streaming waiting page and keep the goggles awake. On Goggles 3, use **More → Wireless Streaming**; on Goggles 2, follow its manual to enable wireless streaming.
 2. Launch GoggleCast and select English in the top-right language selector. Choose a desktop monitor or a local video; start with 1080p30, automatic encoding and MPEG-TS.
 3. Search for receivers, select the goggles and start casting. Wait for buffering, then check the actual image and sound in the goggles.
 4. Click Stop when finished.
