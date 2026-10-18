@@ -1,5 +1,7 @@
 # GoggleCast · 观幕
 
+<img src="assets/gogglecast-preview.png" width="96" height="96" alt="GoggleCast icon">
+
 **Cast a Windows desktop or local video wirelessly to DJI Goggles 3.**
 
 [简体中文](README.md) · [Download](https://github.com/beaver-fpv/GoggleCast/releases/latest) · [Usage guide (Chinese)](docs/USAGE.zh-CN.md) · [Troubleshooting (Chinese)](docs/TROUBLESHOOTING.zh-CN.md)
@@ -90,7 +92,7 @@ The desktop/audio test used NVENC, MPEG-TS and 48 kHz stereo loopback audio. Loc
 
 ## FFmpeg and installation maintenance
 
-The offline Setup includes a pinned **FFmpeg 9.0.2 Essentials** build. Its upstream archive is verified against an expected SHA-256 while building the release. Setup extracts the packaged runtime into `runtime/` without contacting the upstream provider.
+The offline Setup includes a pinned **FFmpeg 8.1.2 (BtbN)** build. Its runtime archive is verified against an expected SHA-256 while building the release. Setup extracts the packaged runtime into `runtime/` without contacting the upstream provider. Exact provenance, executable checksums and both corresponding-source downloads are listed in [FFmpeg source/build information](docs/FFMPEG-SOURCES.md).
 
 Portable and source-build users can obtain a Windows build from the [FFmpeg download page](https://ffmpeg.org/download.html), or use a legitimate existing installation. It must provide `gdigrab`, `libx264` and AAC encoding. NVIDIA hardware encoding additionally requires `h264_nvenc`, a compatible GPU and drivers.
 
@@ -116,10 +118,10 @@ The output is in `dist/`. Run `dist/GoggleCast.exe` with `MainWindow.xaml` besid
 
 ### Build the installer
 
-Install **Inno Setup 6.7.3 or newer** on Windows, ensure Windows `tar.exe` is available, and obtain the pinned `ffmpeg-9.0.2-essentials_build.7z` described in `installer/runtime.json`. With that archive in the repository root, run:
+Install **Inno Setup 6.7.3 or newer** on Windows, ensure Windows `tar.exe` is available, and obtain the pinned `GoggleCast-FFmpeg-8.1.2-runtime.zip` described in `installer/runtime.json`. With that archive in the repository root, run:
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File .\build-installer.ps1 -RuntimeArchive ".\ffmpeg-9.0.2-essentials_build.7z"
+powershell -NoProfile -ExecutionPolicy Bypass -File .\build-installer.ps1 -RuntimeArchive ".\GoggleCast-FFmpeg-8.1.2-runtime.zip"
 ```
 
 This verifies, extracts and packages the pinned dependency into a complete offline Setup executable. The script itself does not download files: `-RuntimeArchive` must point to an existing local archive. You can prepare that archive on an internet-connected build machine before invoking the script; users running the resulting Setup do not download dependencies.

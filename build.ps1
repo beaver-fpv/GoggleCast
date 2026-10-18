@@ -8,7 +8,9 @@ New-Item -ItemType Directory -Path $Output -Force | Out-Null
 $references = @('System.dll','System.Core.dll','System.Xml.dll','System.Xml.Linq.dll','System.Net.Http.dll','System.Drawing.dll','System.Windows.Forms.dll','System.Runtime.Serialization.dll','System.Xaml.dll') | ForEach-Object { '/reference:' + (Join-Path $framework $_) }
 $references += @('WindowsBase.dll','PresentationCore.dll','PresentationFramework.dll') | ForEach-Object { '/reference:' + (Join-Path $wpf $_) }
 $sources = @(Get-ChildItem -LiteralPath (Join-Path $PSScriptRoot 'src') -Filter '*.cs' | Select-Object -ExpandProperty FullName)
-$arguments = @('/nologo','/target:winexe','/platform:x64','/optimize+','/utf8output','/codepage:65001','/langversion:5',('/out:' + (Join-Path $Output 'GoggleCast.exe')),('/win32manifest:' + (Join-Path $PSScriptRoot 'app.manifest'))) + $references + $sources
+$iconPath = Join-Path $PSScriptRoot 'assets\gogglecast.ico'
+if (!(Test-Path -LiteralPath $iconPath)) { throw 'The application icon assets/gogglecast.ico is missing.' }
+$arguments = @('/nologo','/target:winexe','/platform:x64','/optimize+','/utf8output','/codepage:65001','/langversion:5',('/out:' + (Join-Path $Output 'GoggleCast.exe')),('/win32manifest:' + (Join-Path $PSScriptRoot 'app.manifest')),('/win32icon:' + $iconPath)) + $references + $sources
 & $compiler @arguments
 if ($LASTEXITCODE -ne 0) { throw 'Compilation failed.' }
 Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'src\MainWindow.xaml') -Destination (Join-Path $Output 'MainWindow.xaml') -Force

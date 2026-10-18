@@ -38,6 +38,7 @@ DisableProgramGroupPage=yes
 AllowNoIcons=no
 DirExistsWarning=no
 UninstallDisplayIcon={app}\GoggleCast.exe
+SetupIconFile=..\assets\gogglecast.ico
 CloseApplications=yes
 RestartApplications=no
 SetupLogging=yes
@@ -48,6 +49,9 @@ ExtraDiskSpaceRequired=500000000
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "chinesesimplified"; MessagesFile: "compiler:Default.isl,ChineseSimplified.isl"
+
+[Messages]
+english.SelectDirBrowseLabel=To change the installation folder, click Browse.
 
 [CustomMessages]
 english.InstallNow=&Install
@@ -71,9 +75,9 @@ Source: "{#RuntimeSource}\{#FFmpegReadme}"; DestDir: "{app}\runtime"; DestName: 
 Source: "{#RuntimeMetadata}"; DestDir: "{app}\runtime"; DestName: "runtime-source.json"; Flags: ignoreversion
 
 [Icons]
-Name: "{autoprograms}\GoggleCast\观幕 GoggleCast"; Filename: "{app}\GoggleCast.exe"; WorkingDir: "{app}"
-Name: "{autoprograms}\GoggleCast\卸载 GoggleCast"; Filename: "{uninstallexe}"
-Name: "{autodesktop}\观幕 GoggleCast"; Filename: "{app}\GoggleCast.exe"; WorkingDir: "{app}"
+Name: "{autoprograms}\GoggleCast\观幕 GoggleCast"; Filename: "{app}\GoggleCast.exe"; WorkingDir: "{app}"; IconFilename: "{app}\GoggleCast.exe"
+Name: "{autoprograms}\GoggleCast\卸载 GoggleCast"; Filename: "{uninstallexe}"; IconFilename: "{app}\GoggleCast.exe"
+Name: "{autodesktop}\观幕 GoggleCast"; Filename: "{app}\GoggleCast.exe"; WorkingDir: "{app}"; IconFilename: "{app}\GoggleCast.exe"
 
 [Run]
 Filename: "{app}\GoggleCast.exe"; Description: "{cm:Launch}"; Flags: nowait postinstall skipifsilent

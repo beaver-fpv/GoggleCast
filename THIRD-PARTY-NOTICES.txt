@@ -5,18 +5,25 @@ It sends media using SSDP / UPnP AVTransport and HTTP on a local network.
 
 Original GoggleCast source code is licensed under the MIT License; see LICENSE.
 
-FFmpeg is a separate executable. The offline Setup includes the pinned Gyan
-FFmpeg 9.0.2 Essentials build. Its upstream archive is SHA-256-verified during
+FFmpeg is a separate executable. The offline Setup includes the pinned BtbN
+FFmpeg n8.1.2-29-g703dcc25b9-20260721 build. Its runtime archive is SHA-256-verified during
 the installer build. The lightweight portable ZIP does not contain FFmpeg.
 Installed runtime files include FFmpeg-LICENSE.txt, FFmpeg-README.txt and
 runtime-source.json beside ffmpeg.exe. The source URL, archive hash, provider
 and version are recorded in installer/runtime.json and runtime-source.json.
 
-This Gyan build is GPLv3. FFmpeg and its enabled codecs retain their own licenses.
-See https://ffmpeg.org/legal.html, https://www.gyan.dev/ffmpeg/builds/ and
-https://github.com/GyanD/codexffmpeg/releases/tag/9.0.2 for upstream build and
-source information. Portable users may select a different FFmpeg build and
-must refer to that build's own license information.
+This build is GPL-3.0-or-later. FFmpeg and its enabled codecs retain their own licenses.
+The executable SHA-256 is:
+070be6f5202e71a5e0bec88312230eebf2708f9b9ee3694596babf20902dddd2
+
+Get both corresponding-source archives (build scripts/FFmpeg and dependency
+source cache) from the exact links and checksums at:
+https://github.com/beaver-fpv/GoggleCast/blob/main/docs/FFMPEG-SOURCES.md
+They are also linked directly in this release's download notes. The executable
+was matched to the Open Video Craft v1.0.5 mirror's source records; no other
+Open Video Craft application code or binaries are included.
+See https://ffmpeg.org/legal.html for FFmpeg licensing information.
+Portable users may select a different build and must refer to its own license.
 
 Inno Setup is used to create Setup and the uninstaller. Its compiler is a build
 dependency, not included as a standalone development tool in the release.

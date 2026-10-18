@@ -55,6 +55,10 @@ try {
     foreach ($relative in @($runtime.executablePath, $runtime.licensePath, $runtime.readmePath)) {
         if (!(Test-Path -LiteralPath (Join-Path $runtimeSource $relative) -PathType Leaf)) { throw ('Missing required FFmpeg archive entry: ' + $relative) }
     }
+    if ($runtime.executableSha256 -and
+        (Get-FileHash -LiteralPath (Join-Path $runtimeSource $runtime.executablePath) -Algorithm SHA256).Hash.ToLowerInvariant() -ne $runtime.executableSha256.ToLowerInvariant()) {
+        throw 'The extracted FFmpeg executable does not match its source/provenance record.'
+    }
 $arguments = @(
     ('/DAppVersion=' + $Version),
     ('/DAppSource=' + $AppDirectory),

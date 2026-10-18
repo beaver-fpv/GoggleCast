@@ -70,7 +70,7 @@ Français、Deutsch，或跟随系统。语言和编码器路径保存在程序�
 
 编码器依赖
 原画直传不需要 FFmpeg。桌面、测试画面和转码需要支持 gdigrab、libx264、
-AAC 的 FFmpeg。离线安装版内置 FFmpeg 9.0.2 并自动准备，无需单独下载；
+AAC 的 FFmpeg。离线安装版内置 FFmpeg 8.1.2 并自动准备，无需单独下载；
 便携版需在界面中选择已有的 ffmpeg.exe，选择的有效路径会保存。
 程序也会查找 runtime\ffmpeg.exe、程序旁的 ffmpeg.exe、GOGGLECAST_FFMPEG
 环境变量和 PATH。若移走编码器，请重新选择路径。
@@ -88,7 +88,7 @@ GoggleCast 0.1.0 — Windows to Goggles 3
 Project and downloads: https://github.com/beaver-fpv/GoggleCast
 
 Recommended: run GoggleCast-0.1.0-Setup.exe, choose a folder and click Install.
-The offline installer contains a pinned FFmpeg 9.0.2 runtime. Installation does
+The offline installer contains a pinned FFmpeg 8.1.2 runtime. Installation does
 not download components. Desktop/Start menu shortcuts and an uninstaller are
 created automatically. The source archive was SHA-256-verified at build time.
 Install updates into the same folder. Settings and logs survive upgrades and

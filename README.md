@@ -1,5 +1,7 @@
 # 观幕 GoggleCast
 
+<img src="assets/gogglecast-preview.png" width="96" height="96" alt="GoggleCast 图标">
+
 **把 Windows 电脑桌面和本地视频，无线投到 DJI Goggles 3。**
 
 [English](README.en.md) · [下载最新版](https://github.com/beaver-fpv/GoggleCast/releases/latest) · [详细使用说明](docs/USAGE.zh-CN.md) · [常见问题](docs/TROUBLESHOOTING.zh-CN.md)
@@ -92,7 +94,7 @@ GoggleCast 是一个 Windows 桌面投屏程序，提供安装版和便携版。
 
 ## FFmpeg 与安装维护
 
-推荐离线 Setup 包含固定的 **FFmpeg 9.0.2 Essentials** 构建。构建发行包时校验上游压缩包的 SHA-256，安装时直接从 Setup 释放到程序的 `runtime/`，不向上游请求下载。
+推荐离线 Setup 包含固定的 **FFmpeg 8.1.2 (BtbN)** 构建。构建发行包时校验运行时归档的 SHA-256，安装时直接从 Setup 释放到程序的 `runtime/`，不向上游请求下载。精确版本、二进制校验值及两个配套源码附件见 [FFmpeg 对应源码与构建来源](docs/FFMPEG-SOURCES.md)。
 
 便携版或源码运行用户可从 [FFmpeg 官方下载页](https://ffmpeg.org/download.html) 获取 Windows 构建，或使用已有的合法安装。所选构建需提供 `gdigrab`、`libx264` 和 AAC 编码器；NVIDIA 硬件编码还需要 `h264_nvenc`、兼容显卡和驱动。
 
@@ -124,10 +126,10 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\build.ps1
 
 ### 构建安装器
 
-在 Windows 上另外安装 **Inno Setup 6.7.3 或更新版本**，准备 Windows `tar.exe`，并预先取得 `installer/runtime.json` 指定的 `ffmpeg-9.0.2-essentials_build.7z`。假设压缩包位于仓库根目录，运行：
+在 Windows 上另外安装 **Inno Setup 6.7.3 或更新版本**，准备 Windows `tar.exe`，并预先取得 `installer/runtime.json` 指定的 `GoggleCast-FFmpeg-8.1.2-runtime.zip`。假设压缩包位于仓库根目录，运行：
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File .\build-installer.ps1 -RuntimeArchive ".\ffmpeg-9.0.2-essentials_build.7z"
+powershell -NoProfile -ExecutionPolicy Bypass -File .\build-installer.ps1 -RuntimeArchive ".\GoggleCast-FFmpeg-8.1.2-runtime.zip"
 ```
 
 该入口生成完整离线 Setup，并在构建阶段校验、解包和打包固定依赖。脚本本身不会下载文件，`-RuntimeArchive` 必须指向准备好的本地压缩包；可以在联网构建机上先下载，再传入构建入口。用户运行生成的 Setup 时不下载任何依赖。
