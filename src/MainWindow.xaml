@@ -1,0 +1,169 @@
+<Grid xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Background="#F3F5F8" TextElement.FontFamily="Microsoft YaHei UI" TextElement.FontSize="14" TextElement.Foreground="#1A2940">
+  <Grid.Resources>
+    <SolidColorBrush x:Key="Muted" Color="#53657C"/>
+    <Style TargetType="TextBlock">
+      <Setter Property="TextWrapping" Value="Wrap"/>
+    </Style>
+    <Style TargetType="Button">
+      <Setter Property="MinHeight" Value="38"/>
+      <Setter Property="Padding" Value="16,7"/>
+      <Setter Property="Background" Value="White"/>
+      <Setter Property="Foreground" Value="#1A2940"/>
+      <Setter Property="BorderBrush" Value="#B6C1CE"/>
+      <Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="Cursor" Value="Hand"/>
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="Button">
+            <Border x:Name="Frame" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5" Padding="{TemplateBinding Padding}">
+              <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" RecognizesAccessKey="True"/>
+            </Border>
+            <ControlTemplate.Triggers>
+              <Trigger Property="IsMouseOver" Value="True"><Setter TargetName="Frame" Property="Opacity" Value="0.85"/></Trigger>
+              <Trigger Property="IsPressed" Value="True"><Setter TargetName="Frame" Property="Opacity" Value="0.65"/></Trigger>
+              <Trigger Property="IsKeyboardFocused" Value="True"><Setter TargetName="Frame" Property="BorderBrush" Value="#102E84"/><Setter TargetName="Frame" Property="BorderThickness" Value="2"/></Trigger>
+              <Trigger Property="IsEnabled" Value="False"><Setter TargetName="Frame" Property="Opacity" Value="0.48"/><Setter Property="Cursor" Value="Arrow"/></Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+    <Style x:Key="Primary" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+      <Setter Property="Background" Value="#165DDE"/>
+      <Setter Property="Foreground" Value="White"/>
+      <Setter Property="BorderBrush" Value="#165DDE"/>
+      <Setter Property="FontWeight" Value="SemiBold"/>
+    </Style>
+    <Style TargetType="ComboBox"><Setter Property="MinHeight" Value="36"/><Setter Property="Padding" Value="9,5"/><Setter Property="VerticalContentAlignment" Value="Center"/></Style>
+    <Style TargetType="TextBox"><Setter Property="MinHeight" Value="36"/><Setter Property="Padding" Value="9,6"/><Setter Property="BorderBrush" Value="#B6C1CE"/><Setter Property="VerticalContentAlignment" Value="Center"/></Style>
+    <Style x:Key="Label" TargetType="TextBlock"><Setter Property="Margin" Value="0,15,0,7"/><Setter Property="FontWeight" Value="SemiBold"/></Style>
+    <Style x:Key="Hint" TargetType="TextBlock"><Setter Property="Foreground" Value="{StaticResource Muted}"/><Setter Property="FontSize" Value="13"/><Setter Property="LineHeight" Value="21"/><Setter Property="TextWrapping" Value="Wrap"/></Style>
+  </Grid.Resources>
+  <Grid.RowDefinitions><RowDefinition Height="Auto" MinHeight="92"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+
+  <Border Background="#142840" Padding="28,19">
+    <Grid>
+      <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+      <StackPanel>
+        <TextBlock Text="观幕 GoggleCast" Foreground="White" FontSize="26" FontWeight="SemiBold"/>
+        <TextBlock Text="把电脑桌面和视频，送进 Goggles 3。" Foreground="#BFCEE1" Margin="0,5,0,0" FontSize="14"/>
+      </StackPanel>
+      <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="24,0,0,0">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+          <TextBlock Text="界面语言" VerticalAlignment="Center" Foreground="#D5E1F0" Margin="0,0,10,0"/>
+          <ComboBox x:Name="LanguageChoice" DisplayMemberPath="Label" MinWidth="185" MinHeight="32" AutomationProperties.Name="界面语言"/>
+        </StackPanel>
+        <TextBlock Text="电脑 → 无线网络 → 眼镜" HorizontalAlignment="Right" Foreground="#D5E1F0" FontSize="13" Margin="0,7,0,0"/>
+      </StackPanel>
+    </Grid>
+  </Border>
+
+  <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+    <Grid Margin="28,24,28,22">
+      <Grid.ColumnDefinitions><ColumnDefinition Width="1.04*"/><ColumnDefinition Width="26"/><ColumnDefinition Width="1*"/></Grid.ColumnDefinitions>
+      <StackPanel x:Name="SourceControls">
+        <TextBlock Text="选择投屏内容" FontSize="20" FontWeight="SemiBold" Margin="0,0,0,13"/>
+        <ComboBox x:Name="SourceKind" SelectedIndex="0" AutomationProperties.Name="投屏内容">
+          <ComboBoxItem Content="电脑桌面"/><ComboBoxItem Content="本地视频"/><ComboBoxItem Content="测试画面（检查连接）"/>
+        </ComboBox>
+        <StackPanel x:Name="DesktopPanel">
+          <TextBlock Text="显示器" Style="{StaticResource Label}"/>
+          <ComboBox x:Name="ScreenList" DisplayMemberPath="Label" AutomationProperties.Name="选择显示器"/>
+          <TextBlock Text="开始后会分享所选屏幕的全部内容。" Style="{StaticResource Hint}" Margin="0,8,0,0"/>
+          <CheckBox x:Name="DesktopAudio" IsChecked="True" Margin="0,12,0,0" AutomationProperties.Name="发送桌面系统声音"><TextBlock Text="发送桌面系统声音" TextWrapping="Wrap"/></CheckBox>
+          <TextBlock x:Name="DesktopAudioHint" Text="系统声音与画面一起发送。请将耳机连接到眼镜的 USB-C 接口收听。" Style="{StaticResource Hint}" Margin="0,7,0,0"/>
+        </StackPanel>
+        <StackPanel x:Name="FilePanel" Visibility="Collapsed">
+          <TextBlock Text="视频文件" Style="{StaticResource Label}"/>
+          <Grid>
+            <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+            <TextBox x:Name="FilePath" IsReadOnly="True" AutomationProperties.Name="已选择的视频文件"/>
+            <Button x:Name="SelectFileButton" Grid.Column="1" Content="选择文件" Margin="8,0,0,0"/>
+          </Grid>
+          <CheckBox x:Name="DirectFile" IsChecked="False" Margin="0,12,0,0"><TextBlock Text="MP4 原画直传（兼容文件无需转码）" TextWrapping="Wrap"/></CheckBox>
+          <TextBlock Text="视频音轨随画面发送；默认转码以兼容眼镜，原画直传可手动开启。" Style="{StaticResource Hint}" Margin="0,7,0,0"/>
+        </StackPanel>
+        <TextBlock x:Name="TestHint" Text="发送动态测试图和提示音，用于排除桌面采集问题。" Style="{StaticResource Hint}" Margin="0,12,0,0" Visibility="Collapsed"/>
+
+        <Grid x:Name="EncodingControls" Margin="0,3,0,0">
+          <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="16"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+          <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+          <TextBlock Text="清晰度" Style="{StaticResource Label}"/>
+          <TextBlock Grid.Column="2" Text="编码方式" Style="{StaticResource Label}"/>
+          <ComboBox x:Name="Resolution" Grid.Row="1" SelectedIndex="0" AutomationProperties.Name="清晰度"><ComboBoxItem Content="1080p · 30 帧"/><ComboBoxItem Content="720p · 30 帧"/></ComboBox>
+          <ComboBox x:Name="Encoder" Grid.Row="1" Grid.Column="2" SelectedIndex="0" AutomationProperties.Name="编码方式"><ComboBoxItem Content="自动（优先 NVIDIA）"/><ComboBoxItem Content="软件编码"/></ComboBox>
+          <TextBlock Grid.Row="2" Text="传输格式" Style="{StaticResource Label}"/>
+          <ComboBox x:Name="Container" Grid.Row="3" Grid.ColumnSpan="3" SelectedIndex="0" AutomationProperties.Name="传输格式"><ComboBoxItem Content="MPEG-TS（先尝试此格式）"/><ComboBoxItem Content="分片 MP4（兼容备选）"/></ComboBox>
+        </Grid>
+        <Expander Header="编码器路径" Margin="0,18,0,0">
+          <StackPanel Margin="0,9,0,0">
+            <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+              <TextBox x:Name="FfmpegPath" AutomationProperties.Name="FFmpeg 路径"/>
+              <Button x:Name="SelectFfmpegButton" Grid.Column="1" Content="浏览" Margin="8,0,0,0"/>
+            </Grid>
+            <TextBlock x:Name="FfmpegHint" Text="桌面、测试图和视频转码需要 FFmpeg。" Style="{StaticResource Hint}" Margin="0,7,0,0"/>
+          </StackPanel>
+        </Expander>
+      </StackPanel>
+
+      <StackPanel Grid.Column="2">
+        <Grid Margin="0,0,0,12"><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+          <TextBlock Text="连接眼镜" FontSize="20" FontWeight="SemiBold" VerticalAlignment="Center"/>
+          <Button x:Name="DiscoverButton" Grid.Column="1" Content="搜索设备"/>
+        </Grid>
+        <Grid Height="150">
+          <ListBox x:Name="Devices" BorderBrush="#B6C1CE" Background="White" Padding="6" HorizontalContentAlignment="Stretch" AutomationProperties.Name="可投屏设备列表" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListBox.ItemTemplate><DataTemplate><TextBlock Text="{Binding Label}" TextWrapping="Wrap"/></DataTemplate></ListBox.ItemTemplate>
+            <ListBox.ItemContainerStyle><Style TargetType="ListBoxItem"><Setter Property="Padding" Value="10,9"/><Setter Property="Margin" Value="0,0,0,3"/></Style></ListBox.ItemContainerStyle>
+          </ListBox>
+          <TextBlock x:Name="EmptyDevices" Text="暂未搜索设备&#x0a;开启眼镜的无线投屏后，点击「搜索设备」。" Foreground="#53657C" TextAlignment="Center" VerticalAlignment="Center" Margin="20" IsHitTestVisible="False" LineHeight="23"/>
+        </Grid>
+        <TextBlock x:Name="DiscoveryHint" Text="只查找当前局域网内支持投屏的设备。" Style="{StaticResource Hint}" Margin="0,8,0,0"/>
+        <Expander x:Name="ManualExpander" Header="手动添加设备" Margin="0,13,0,0">
+          <StackPanel Margin="0,9,0,0">
+            <TextBlock Text="输入眼镜 IP，或设备描述文件的 HTTP 地址" Style="{StaticResource Hint}" Margin="0,0,0,7"/>
+            <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+              <TextBox x:Name="ManualAddress" AutomationProperties.Name="眼镜 IP 或设备描述地址" ToolTip="例如 192.168.1.25，或 http://设备地址:端口/description.xml"/>
+              <Button x:Name="AddDeviceButton" Grid.Column="1" Content="添加" Margin="8,0,0,0"/>
+            </Grid>
+          </StackPanel>
+        </Expander>
+        <Border BorderBrush="#D5DDE7" BorderThickness="0,1,0,0" Margin="0,19,0,0" Padding="0,15,0,0">
+          <StackPanel>
+            <TextBlock Text="首次连接" FontWeight="SemiBold" Margin="0,0,0,8"/>
+            <TextBlock Text="1. 眼镜打开「更多 → 无线投屏」。" Style="{StaticResource Hint}"/>
+            <TextBlock Text="2. 电脑与眼镜连接同一局域网。" Style="{StaticResource Hint}" Margin="0,4,0,0"/>
+            <TextBlock Text="3. 选择设备并开始投屏，在眼镜内确认画面。" Style="{StaticResource Hint}" Margin="0,4,0,0"/>
+            <TextBlock Text="找不到设备时，检查路由器访客隔离，并允许此程序通过 Windows 防火墙的专用网络。" Style="{StaticResource Hint}" Margin="0,10,0,0"/>
+            <TextBlock Text="眼镜可能缓冲数秒，适合看视频和展示桌面。" Style="{StaticResource Hint}" Margin="0,8,0,0"/>
+          </StackPanel>
+        </Border>
+      </StackPanel>
+    </Grid>
+  </ScrollViewer>
+
+  <Border Grid.Row="2" Background="White" BorderBrush="#D5DDE7" BorderThickness="0,1,0,0" Padding="28,16,28,13">
+    <StackPanel>
+      <Grid>
+        <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+        <StackPanel Margin="0,0,22,0" VerticalAlignment="Center">
+          <TextBlock x:Name="StatusTitle" Text="准备就绪" FontSize="16" FontWeight="SemiBold"/>
+          <TextBlock x:Name="StatusDetail" Text="选择内容和设备后开始；当前没有分享屏幕。" Style="{StaticResource Hint}" Margin="0,4,0,0"/>
+          <TextBlock x:Name="StreamDetail" Text="" Style="{StaticResource Hint}" Visibility="Collapsed" Margin="0,3,0,0"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+          <Button x:Name="StopButton" Content="停止" IsEnabled="False" MinWidth="82" Margin="0,0,10,0"/>
+          <Button x:Name="StartButton" Content="开始投屏" Style="{StaticResource Primary}" MinWidth="128" MinHeight="44"/>
+        </StackPanel>
+      </Grid>
+      <Expander x:Name="LogExpander" Header="连接日志" Margin="0,12,0,0">
+        <Grid Margin="0,9,0,0"><Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+          <TextBox x:Name="LogText" IsReadOnly="True" Height="120" Background="#F5F7FA" FontSize="12" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AutomationProperties.Name="连接日志"/>
+          <Button x:Name="OpenLogsButton" Grid.Row="1" Content="打开日志文件夹" HorizontalAlignment="Right" Margin="0,8,0,0" MinHeight="30" Padding="10,4"/>
+        </Grid>
+      </Expander>
+    </StackPanel>
+  </Border>
+</Grid>

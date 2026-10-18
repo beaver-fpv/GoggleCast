@@ -1,0 +1,55 @@
+; Project-owned Simplified Chinese overrides, layered on Inno Setup's Default.isl.
+[LangOptions]
+LanguageName=简体中文
+LanguageID=$0804
+LanguageCodePage=936
+DialogFontName=Microsoft YaHei UI
+
+[Messages]
+SetupAppTitle=安装
+SetupWindowTitle=安装 - %1
+UninstallAppTitle=卸载
+UninstallAppFullTitle=%1 卸载
+InformationTitle=提示
+ConfirmTitle=确认
+ErrorTitle=错误
+ButtonBack=< 上一步(&B)
+ButtonNext=下一步(&N) >
+ButtonInstall=立即安装(&I)
+ButtonOK=确定
+ButtonCancel=取消
+ButtonYes=是(&Y)
+ButtonNo=否(&N)
+ButtonFinish=完成(&F)
+ButtonBrowse=浏览(&B)...
+ButtonWizardBrowse=浏览(&R)...
+ButtonNewFolder=新建文件夹(&M)
+SelectLanguageTitle=选择安装语言
+SelectLanguageLabel=请选择安装过程中使用的语言。
+ClickNext=单击“下一步”继续，或单击“取消”退出。
+WizardSelectDir=安装观幕 GoggleCast
+SelectDirDesc=选择安装位置，然后单击“立即安装”。
+SelectDirLabel3=安装程序将把 [name] 安装到以下文件夹。
+SelectDirBrowseLabel=如需更改安装位置，请单击“浏览”。
+DiskSpaceMBLabel=至少需要 [mb] MB 的可用磁盘空间。
+WizardPreparing=正在准备安装
+PreparingDesc=正在准备安装 [name]。
+CannotContinue=安装程序无法继续。请单击“取消”退出。
+WizardInstalling=正在安装
+InstallingLabel=正在安装 [name]，请稍候。
+FinishedHeadingLabel=[name] 安装完成
+FinishedLabelNoIcons=安装程序已在您的电脑上安装 [name]。
+FinishedLabel=安装程序已在您的电脑上安装 [name]。可从桌面或开始菜单启动程序。
+ClickFinish=单击“完成”退出安装程序。
+ExitSetupTitle=退出安装
+ExitSetupMessage=安装尚未完成。现在退出将不会完成安装。确定要退出吗？
+ConfirmUninstall=确定要卸载 %1 及其程序文件吗？
+UninstallStatusLabel=正在卸载 %1，请稍候。
+UninstalledAll=%1 已卸载。
+UninstalledMost=%1 已卸载。部分文件需要手动删除。
+StatusExtractFiles=正在安装程序文件...
+StatusCreateIcons=正在创建快捷方式...
+StatusCreateIniEntries=正在写入配置...
+StatusCreateRegistryEntries=正在注册卸载信息...
+StatusRunProgram=正在启动程序...
+StatusRollback=正在撤销本次安装...

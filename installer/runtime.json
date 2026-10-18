@@ -1,0 +1,15 @@
+{
+  "version": "9.0.2",
+  "provider": "Gyan FFmpeg builds",
+  "homepage": "https://www.gyan.dev/ffmpeg/builds/",
+  "source": "https://github.com/GyanD/codexffmpeg/releases/tag/9.0.2",
+  "url": "https://github.com/GyanD/codexffmpeg/releases/download/9.0.2/ffmpeg-9.0.2-essentials_build.7z",
+  "mirrorUrl": "https://www.gyan.dev/ffmpeg/builds/packages/ffmpeg-9.0.2-essentials_build.7z",
+  "archiveName": "ffmpeg-9.0.2-essentials_build.7z",
+  "archiveSha256": "4705843ccaaf54257c16ad90f3e952ece33c17df964ecf7bfdbb0f49c7171077",
+  "archiveBytes": 35430500,
+  "archiveRoot": "ffmpeg-9.0.2-essentials_build",
+  "executablePath": "bin/ffmpeg.exe",
+  "licensePath": "LICENSE",
+  "readmePath": "README.txt"
+}

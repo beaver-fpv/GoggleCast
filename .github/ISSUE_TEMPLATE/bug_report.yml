@@ -1,0 +1,71 @@
+name: 问题反馈 / Bug report
+description: 报告连接、画面、声音、界面或启动问题。
+title: '[Bug] '
+labels: ['bug']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        请写明可复现的步骤。发布前请遮住个人桌面、Wi-Fi 密码、本机路径和不需要公开的设备标识。
+        A successful command or transferred bytes alone do not confirm correct playback. Please describe what was actually visible/audible.
+  - type: input
+    id: version
+    attributes:
+      label: 软件版本 / App version
+      description: Release 版本或自行构建的提交号。
+      placeholder: v0.1.0
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: 环境 / Environment
+      description: Windows 版本、显卡、眼镜型号/固件、连接方式，以及 FFmpeg 版本和编码器（如适用）。无需提供密码或设备完整编号。
+      placeholder: |
+        Windows:
+        GPU:
+        Goggles / firmware:
+        Network: PC hotspot / shared router / other
+        FFmpeg / encoder:
+    validations:
+      required: true
+  - type: dropdown
+    id: source
+    attributes:
+      label: 使用的画面来源 / Source
+      options:
+        - 桌面 / Desktop
+        - 视频文件（兼容转码）/ Video file (transcoded)
+        - 视频文件（直接播放）/ Video file (direct)
+        - 测试图 / Test pattern
+        - 启动或界面问题 / Startup or UI
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤 / Steps to reproduce
+      placeholder: |
+        1. 打开眼镜的无线投屏页面
+        2. 在软件中选择……
+        3. 点击……后发生……
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: 实际结果 / Actual result
+      description: 软件显示什么？眼镜里实际看到什么？如为声音问题，请说明声音从眼镜耳机还是电脑输出，以及提前、滞后或无声。
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 预期结果 / Expected result
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: 日志或截图 / Logs or screenshots
+      description: 可粘贴出错前后的相关日志，或上传已遮盖个人信息的截图。

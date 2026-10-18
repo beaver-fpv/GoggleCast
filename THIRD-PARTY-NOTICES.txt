@@ -1,0 +1,26 @@
+GoggleCast 0.1.0
+
+This application is independently implemented and is not endorsed by DJI.
+It sends media using SSDP / UPnP AVTransport and HTTP on a local network.
+
+Original GoggleCast source code is licensed under the MIT License; see LICENSE.
+
+FFmpeg is a separate executable. The offline Setup includes the pinned Gyan
+FFmpeg 9.0.2 Essentials build. Its upstream archive is SHA-256-verified during
+the installer build. The lightweight portable ZIP does not contain FFmpeg.
+Installed runtime files include FFmpeg-LICENSE.txt, FFmpeg-README.txt and
+runtime-source.json beside ffmpeg.exe. The source URL, archive hash, provider
+and version are recorded in installer/runtime.json and runtime-source.json.
+
+This Gyan build is GPLv3. FFmpeg and its enabled codecs retain their own licenses.
+See https://ffmpeg.org/legal.html, https://www.gyan.dev/ffmpeg/builds/ and
+https://github.com/GyanD/codexffmpeg/releases/tag/9.0.2 for upstream build and
+source information. Portable users may select a different FFmpeg build and
+must refer to that build's own license information.
+
+Inno Setup is used to create Setup and the uninstaller. Its compiler is a build
+dependency, not included as a standalone development tool in the release.
+See https://jrsoftware.org/ and its license for the installer technology.
+
+Windows, .NET Framework and system fonts are supplied by Microsoft / Windows.
+No code or binaries from GogglePlayer are bundled or copied.

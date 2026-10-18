@@ -1,0 +1,42 @@
+# Local builds and application state
+/dist/
+/bin/
+/obj/
+/artifacts/
+/installer-output/
+/installer-cache/
+/ci-evidence/
+/.impeccable/
+/.review/
+**/logs/
+**/settings.xml
+**/startup-error.txt
+.vs/
+*.user
+*.suo
+
+# Binary dependencies, packages and temporary media are never source files.
+*.exe
+*.dll
+*.pdb
+*.zip
+*.7z
+*.xz
+*.zst
+*.gz
+*.log
+*.mp4
+*.mkv
+*.ts
+*.pcm
+*.wav
+
+# Publish reusable test sources, not generated results or personal device tests.
+/tests/*
+!/tests/*.cs
+!/tests/*.ps1
+/tests/CheckRealGoggles.*
+
+# Local publication helpers and private verification evidence
+/publish-local/
+*.tmp
